@@ -9,7 +9,7 @@ use RobThree\HumanoID\HumanoID;
 use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Component\Yaml\Yaml;
 
-class LaravelHumanoID
+class HumanoIDManager
 {
     private string $wordSetsBasePath;
     /**

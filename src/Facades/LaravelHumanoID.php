@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * Get the HumanoID integration manager class.
  *
- * @see \MallardDuck\LaravelHumanoID\LaravelHumanoID
+ * @see \MallardDuck\LaravelHumanoID\HumanoIDManager
  */
 class LaravelHumanoID extends Facade
 {

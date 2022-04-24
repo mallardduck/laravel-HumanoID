@@ -49,14 +49,14 @@ class LaravelHumanoIDServiceProvider extends ServiceProvider
         );
 
         $this->app->singleton(LaravelHumanoIDFacade::class, function (Application $app) {
-            return new LaravelHumanoID(
+            return new HumanoIDManager(
                 fn () => Container::getInstance()->make('config'),
             );
         });
 
         $this->app->singleton(HumanoIDFacade::class, function (Application $app) {
             /**
-             * @var LaravelHumanoID $humanoIdManager
+             * @var HumanoIDManager $humanoIdManager
              */
             $humanoIdManager = $app->get(LaravelHumanoIDFacade::class);
 

@@ -2,7 +2,7 @@
 
 use MallardDuck\LaravelHumanoID\Facades\HumanoID;
 use MallardDuck\LaravelHumanoID\Facades\LaravelHumanoID;
-use MallardDuck\LaravelHumanoID\LaravelHumanoID as HumanoIDManager;
+use MallardDuck\LaravelHumanoID\HumanoIDManager as HumanoIDManager;
 use RobThree\HumanoID\HumanoID as HumanoIDGenerator;
 
 it('can get HumanoID manager class instance from App', function () {

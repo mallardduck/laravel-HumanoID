@@ -7,7 +7,7 @@ it('can verify HumanoID facade exists', function () {
         ->toBeTrue();
 });
 
-it('can verify LaravelHumanoID facade exists', function () {
-    expect(class_exists(\MallardDuck\LaravelHumanoID\LaravelHumanoID::class))
+it('can verify HumanoIDManager facade exists', function () {
+    expect(class_exists(\MallardDuck\LaravelHumanoID\HumanoIDManager::class))
         ->toBeTrue();
 });
