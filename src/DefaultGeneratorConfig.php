@@ -4,7 +4,7 @@ namespace MallardDuck\LaravelHumanoID;
 
 use RobThree\HumanoID\WordFormatOption;
 
-final class DefaultConfig extends \MallardDuck\LaravelHumanoID\HumanoIDConfig
+final class DefaultGeneratorConfig extends HumanoIDConfig
 {
     public function __construct(
     ) {

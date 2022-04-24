@@ -2,8 +2,13 @@
 
 namespace MallardDuck\LaravelHumanoID;
 
+use Composer\InstalledVersions;
+use Illuminate\Container\Container;
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Composer;
 use Illuminate\Support\ServiceProvider;
-use MallardDuck\LaravelHumanoID\Commands\LaravelHumanoIDCommand;
+use MallardDuck\LaravelHumanoID\Facades\HumanoID as HumanoIDFacade;
+use MallardDuck\LaravelHumanoID\Facades\LaravelHumanoID as LaravelHumanoIDFacade;
 
 class LaravelHumanoIDServiceProvider extends ServiceProvider
 {
@@ -18,7 +23,13 @@ class LaravelHumanoIDServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../config/humanoid.php' => config_path('humanoid.php'),
-        ]);
+        ], ['humanoid-all', 'config']);
+
+        $humanoidPath = realpath(InstalledVersions::getInstallPath('robthree/humanoid'));
+        $this->publishes([
+            $humanoidPath.'/data/space-words.json' => resource_path('humanoid/space-words.json'),
+            $humanoidPath.'/data/zoo-words.json' => resource_path('humanoid/zoo-words.json'),
+        ], ['humanoid-all', 'humanoid']);
 
         if ($this->app->runningInConsole()) {
             // $this->commands([
@@ -34,11 +45,18 @@ class LaravelHumanoIDServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(\MallardDuck\LaravelHumanoID\Facades\LaravelHumanoID::class, function ($app) {
+        $this->app->singleton(LaravelHumanoIDFacade::class, function (Application $app) {
             return new LaravelHumanoID(
-                $app->config('humanoid.wordSetsBasePath', resource_path('humanoid/')),
-                $app->config('humanoid.defaultConfig', null),
+                fn () => Container::getInstance()->make('config'),
             );
+        });
+
+        $this->app->singleton(HumanoIDFacade::class, function (Application $app) {
+            /**
+             * @var LaravelHumanoID $humanoIdManager
+             */
+            $humanoIdManager = $app->get(LaravelHumanoIDFacade::class);
+            return $humanoIdManager->getDefaultGenerator();
         });
     }
 }

@@ -2,22 +2,32 @@
 
 namespace MallardDuck\LaravelHumanoID;
 
+use Illuminate\Config\Repository as Config;
 use Illuminate\Support\Facades\File;
 use RobThree\HumanoID\HumanoID;
 use Symfony\Component\Finder\SplFileInfo;
+use Symfony\Component\Yaml\Yaml;
 
 class LaravelHumanoID
 {
-    public static ?HumanoID $defaultInstance = null;
+    private string $wordSetsBasePath;
+    /**
+     * @var class-string<HumanoIDConfig> $configClass
+     */
+    private string $configClass;
 
     /**
-     * @param string $wordSetsBasePath
-     * @param class-string<HumanoIDConfig> $configClass
+     * @param callable<Config> $configResolver
      */
     public function __construct(
-        private string $wordSetsBasePath,
-        private string $configClass = DefaultConfig::class,
+        callable $configResolver
     ) {
+        /**
+         * @var Config $config
+         */
+        $config = $configResolver();
+        $this->wordSetsBasePath = $config->get('humanoid.wordSetsBasePath', resource_path('humanoid/'));
+        $this->configClass = $config->get('humanoid.defaultGeneratorConfig', DefaultGeneratorConfig::class);
     }
 
     public function hasWordSetsFolder(): bool
@@ -48,44 +58,36 @@ class LaravelHumanoID
         if (! in_array($fileExt, ['yml', 'yaml', 'json'])) {
             throw new \RuntimeException('WordSets file should be a valid YML or JSON file.');
         }
-        $isJson = $fileExt === 'json' ? true : false;
-        if (! $isJson && ! static::hasYamlLibrary()) {
-            throw new \RuntimeException('Attempting to use YAML based wordset file but missing PHP YAML extension.');
-        }
-        $fullPath = $this->wordSetsBasePath . DIRECTORY_SEPARATOR . $wordSetsFilename;
-        if (File::exists($fullPath) === false) {
+        $fullPath = realpath($this->wordSetsBasePath . DIRECTORY_SEPARATOR . $wordSetsFilename);
+        if ($fullPath === false) {
             throw new \RuntimeException(
                 sprintf(
                     'Provided WordSets file does not exist at path `%s`.',
-                    $fullPath
+                    $this->wordSetsBasePath . DIRECTORY_SEPARATOR . $wordSetsFilename
                 )
             );
         }
         $contents = File::get($fullPath);
-        if ($isJson) {
+        if ($fileExt === 'json') {
             return json_decode($contents, true);
         }
 
-        return yaml_parse($contents);
+        return Yaml::parse($contents);
     }
 
     public function getDefaultGenerator(): HumanoID
     {
-        if (static::$defaultInstance === null) {
-            $config = $this->getDefaultGeneratorConfig();
-            $wordSets = $this->loadWordSets($config->wordSetsFilename);
-            static::$defaultInstance = new HumanoID(
-                wordSets: $wordSets,
-                separator: $config->separator,
-                format: $config->formatOption
-            );
+        if (!$this->hasWordSetsFolder()) {
+            throw new \RuntimeException('The application is missing the wordsets folder, publish the `humanoid` resources first.');
         }
 
-        return static::$defaultInstance;
-    }
+        $config = $this->getDefaultGeneratorConfig();
+        $wordSets = $this->loadWordSets($config->wordSetsFilename);
 
-    private static function hasYamlLibrary(): bool
-    {
-        return function_exists('yaml_parse') && function_exists('yaml_parse_file');
+        return new HumanoID(
+            wordSets: $wordSets,
+            separator: $config->separator,
+            format: $config->formatOption
+        );
     }
 }
