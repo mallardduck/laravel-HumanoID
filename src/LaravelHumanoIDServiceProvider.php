@@ -5,7 +5,6 @@ namespace MallardDuck\LaravelHumanoID;
 use Composer\InstalledVersions;
 use Illuminate\Container\Container;
 use Illuminate\Foundation\Application;
-use Illuminate\Support\Composer;
 use Illuminate\Support\ServiceProvider;
 use MallardDuck\LaravelHumanoID\Facades\HumanoID as HumanoIDFacade;
 use MallardDuck\LaravelHumanoID\Facades\LaravelHumanoID as LaravelHumanoIDFacade;
@@ -56,6 +55,7 @@ class LaravelHumanoIDServiceProvider extends ServiceProvider
              * @var LaravelHumanoID $humanoIdManager
              */
             $humanoIdManager = $app->get(LaravelHumanoIDFacade::class);
+
             return $humanoIdManager->getDefaultGenerator();
         });
     }

@@ -12,7 +12,7 @@ class LaravelHumanoID
 {
     private string $wordSetsBasePath;
     /**
-     * @var class-string<HumanoIDConfig> $configClass
+     * @var class-string<HumanoIDConfig>
      */
     private string $configClass;
 
@@ -77,7 +77,7 @@ class LaravelHumanoID
 
     public function getDefaultGenerator(): HumanoID
     {
-        if (!$this->hasWordSetsFolder()) {
+        if (! $this->hasWordSetsFolder()) {
             throw new \RuntimeException('The application is missing the wordsets folder, publish the `humanoid` resources first.');
         }
 

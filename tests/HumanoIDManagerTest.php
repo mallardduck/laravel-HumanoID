@@ -48,7 +48,7 @@ it('can provide the default generator Config', function () {
 });
 
 it('can provide the default generator Config when App config file missing', function () {
-    $integrationInstance = new LaravelHumanoID(fn() => new Config());
+    $integrationInstance = new LaravelHumanoID(fn () => new Config());
     $defaultGeneratorConfig = $integrationInstance->getDefaultGeneratorConfig();
     expect($defaultGeneratorConfig)
         ->toBeInstanceOf(HumanoIDConfig::class)

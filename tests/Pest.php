@@ -15,14 +15,13 @@ uses(TestCase::class)->in(__DIR__);
 function getTestConfigRepo(
     ?string $basePath = __DIR__ . '/stubs/wordSets',
     ?string $defaultGeneratorConfig = DefaultTestConfig::class,
-): Closure
-{
-    return function() use ($basePath, $defaultGeneratorConfig) {
+): Closure {
+    return function () use ($basePath, $defaultGeneratorConfig) {
         return new Config([
             'humanoid' => [
                 'wordSetsBasePath' => $basePath,
                 'defaultGeneratorConfig' => $defaultGeneratorConfig,
-            ]
+            ],
         ]);
     };
 }
