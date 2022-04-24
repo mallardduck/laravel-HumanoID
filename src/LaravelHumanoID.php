@@ -27,7 +27,7 @@ class LaravelHumanoID
          * @var Config $config
          */
         $config = $configResolver();
-        $this->wordSetsBasePath = $config->get('humanoid.wordSetsBasePath', resource_path('humanoid/'));
+        $this->wordSetsBasePath = rtrim($config->get('humanoid.wordSetsBasePath', resource_path('humanoid/')));
         $this->configClass = $config->get('humanoid.defaultGeneratorConfig', DefaultGeneratorConfig::class);
     }
 
