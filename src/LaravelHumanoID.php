@@ -17,7 +17,8 @@ class LaravelHumanoID
     public function __construct(
         private string $wordSetsBasePath,
         private string $configClass = DefaultConfig::class,
-    ) {}
+    ) {
+    }
 
     public function hasWordSetsFolder(): bool
     {
@@ -44,11 +45,11 @@ class LaravelHumanoID
     private function loadWordSets(string $wordSetsFilename): array
     {
         $fileExt = pathinfo($wordSetsFilename, PATHINFO_EXTENSION);
-        if (!in_array($fileExt, ['yml', 'yaml', 'json'])) {
+        if (! in_array($fileExt, ['yml', 'yaml', 'json'])) {
             throw new \RuntimeException('WordSets file should be a valid YML or JSON file.');
         }
         $isJson = $fileExt === 'json' ? true : false;
-        if (!$isJson && !static::hasYamlLibrary()) {
+        if (! $isJson && ! static::hasYamlLibrary()) {
             throw new \RuntimeException('Attempting to use YAML based wordset file but missing PHP YAML extension.');
         }
         $fullPath = $this->wordSetsBasePath . DIRECTORY_SEPARATOR . $wordSetsFilename;

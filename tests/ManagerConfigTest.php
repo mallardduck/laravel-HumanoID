@@ -5,7 +5,6 @@ use MallardDuck\LaravelHumanoID\HumanoIDConfig;
 use MallardDuck\LaravelHumanoID\Tests\DefaultTestConfig;
 use RobThree\HumanoID\WordFormatOption;
 
-
 it('can verify the integration config classes exist', function () {
     expect(class_exists(HumanoIDConfig::class))->toBeTrue();
     expect(class_exists(DefaultConfig::class))->toBeTrue();
@@ -22,6 +21,6 @@ it('can instantiate a default config', function () {
         ->toMatchObject([
             'wordSetsFilename' => 'space-words.json',
             'separator' => '-',
-            'formatOption' => WordFormatOption::ucfirst()
+            'formatOption' => WordFormatOption::ucfirst(),
         ]);
 });

@@ -6,7 +6,6 @@ use MallardDuck\LaravelHumanoID\Tests\DefaultTestConfig;
 use RobThree\HumanoID\HumanoID;
 use RobThree\HumanoID\WordFormatOption;
 
-
 it('can verify WordSets directory exists', function () {
     $integrationInstance = new LaravelHumanoID(__DIR__ . '/stubs/wordSets');
     expect($integrationInstance->hasWordSetsFolder())->toBeTrue();

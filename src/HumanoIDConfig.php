@@ -10,5 +10,6 @@ abstract class HumanoIDConfig
         public string $wordSetsFilename,
         public ?string $separator = '-',
         public ?WordFormatOption $formatOption = null
-    ) {}
+    ) {
+    }
 }
