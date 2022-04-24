@@ -2,6 +2,7 @@
 
 namespace MallardDuck\LaravelHumanoID;
 
+use Closure;
 use Illuminate\Config\Repository as Config;
 use Illuminate\Support\Facades\File;
 use RobThree\HumanoID\HumanoID;
@@ -17,10 +18,10 @@ class LaravelHumanoID
     private string $configClass;
 
     /**
-     * @param callable<Config> $configResolver
+     * @param Closure(): Config $configResolver
      */
     public function __construct(
-        callable $configResolver
+        Closure $configResolver
     ) {
         /**
          * @var Config $config
