@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace MallardDuck\LaravelHumanoID;
 
 use Closure;
+use Composer\InstalledVersions;
 use Illuminate\Config\Repository as Config;
 use Illuminate\Support\Facades\File;
 use RobThree\HumanoID\HumanoID;
@@ -94,5 +95,14 @@ class HumanoIDManager
             separator: $config->separator,
             format: $config->formatOption
         );
+    }
+
+    public static function getHumanoIDVendorPath(): string
+    {
+        static $vendorPath;
+        if (!isset($vendorPath)) {
+            $vendorPath = realpath(InstalledVersions::getInstallPath('robthree/humanoid'));
+        }
+        return $vendorPath;
     }
 }

@@ -29,7 +29,7 @@ class LaravelHumanoIDServiceProvider extends ServiceProvider implements Deferrab
             __DIR__.'/../config/humanoid.php' => config_path('humanoid.php'),
         ], ['humanoid-all', 'config', 'laravel-humanoid-config']);
 
-        $humanoidPath = realpath(InstalledVersions::getInstallPath('robthree/humanoid'));
+        $humanoidPath = HumanoIDManager::getHumanoIDVendorPath();
         $this->publishes([
             $humanoidPath.'/data/space-words.json' => resource_path('humanoid/space-words.json'),
             $humanoidPath.'/data/zoo-words.json' => resource_path('humanoid/zoo-words.json'),

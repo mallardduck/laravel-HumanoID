@@ -23,3 +23,9 @@ it('can get default HumanoID instance from App', function () {
     expect($default->parse('Hypergiant-Quaoar-Pinwheel'))
         ->toBe(420);
 });
+
+it('can get HumanoID vendor path', function () {
+    expect(ActualHumanoIDManager::getHumanoIDVendorPath())
+        ->toBeString()
+        ->toEndWith('vendor/robthree/humanoid');
+});
