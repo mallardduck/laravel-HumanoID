@@ -20,7 +20,6 @@
         "ext-json": "*",
         "illuminate/contracts": "^9.0",
         "robthree/humanoid": "^1.0",
-        "spatie/laravel-package-tools": "^1.9.2",
         "symfony/var-dumper": "^6.0",
         "symfony/yaml": "^6.0"
     },
@@ -34,8 +33,7 @@
         "phpstan/phpstan-deprecation-rules": "^1.0",
         "phpstan/phpstan-phpunit": "^1.0",
         "phpunit/phpunit": "^9.5",
-        "roave/better-reflection": "^5.4",
-        "spatie/laravel-ray": "^1.26"
+        "roave/better-reflection": "^5.4"
     },
     "autoload": {
         "psr-4": {
