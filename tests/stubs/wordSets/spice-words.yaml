@@ -1,0 +1,23 @@
+---
+baking:
+  - Allspice
+  - Cloves
+  - Coriander
+  - GingerPowder
+  - Lavender
+  - Nutmeg
+  - Poppy
+  - Vanilla
+  - Anise
+cooking:
+  - Basil
+  - BayLeaf
+  - Chili
+  - Cumin
+  - Curry
+  - Dill
+  - Cayenne
+  - Thyme
+season:
+  - Salt
+  - Pepper

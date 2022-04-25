@@ -95,3 +95,19 @@ it('can provide the default (default app) generator', function () {
     expect($defaultGenerator->parse('Hypergiant-Quaoar-Pinwheel'))
         ->toBe(420);
 });
+
+it('can provide the default (spice) generator', function () {
+    $integrationInstance = new HumanoIDManager(getTestConfigRepo(defaultGeneratorConfig: \MallardDuck\LaravelHumanoID\Tests\SpiceTestConfig::class));
+    $defaultGenerator = $integrationInstance->getDefaultGenerator();
+    expect($defaultGenerator)
+        ->toBeInstanceOf(HumanoID::class);
+    expect($defaultGenerator->create(42))
+        ->toBe('coriander|dill|salt');
+    expect($defaultGenerator->parse('coriander|anise|chili|salt'))
+        ->toBe(420);
+    expect($defaultGenerator->create(96000001))
+        ->toBe('cloves|coriander|coriander|nutmeg|lavender|lavender|allspice|poppy|basil|pepper');
+    expect($defaultGenerator->parse('coriander|vanilla|basil|pepper'))
+        ->toBe(401);
+
+});
