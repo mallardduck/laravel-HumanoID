@@ -109,5 +109,4 @@ it('can provide the default (spice) generator', function () {
         ->toBe('cloves|coriander|coriander|nutmeg|lavender|lavender|allspice|poppy|basil|pepper');
     expect($defaultGenerator->parse('coriander|vanilla|basil|pepper'))
         ->toBe(401);
-
 });

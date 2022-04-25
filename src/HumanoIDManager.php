@@ -45,7 +45,7 @@ class HumanoIDManager
                 return in_array(pathinfo($fileInfo->getFilename(), PATHINFO_EXTENSION), [
                     'yaml',
                     'yml',
-                    'json'
+                    'json',
                 ]);
             })->values();
 
