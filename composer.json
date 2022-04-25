@@ -69,6 +69,7 @@
                 "HumanoIDManager": "MallardDuck\\LaravelHumanoID\\Facades\\HumanoIDManager"
             },
             "providers": [
+                "MallardDuck\\LaravelHumanoID\\HumanoIDServiceProvider",
                 "MallardDuck\\LaravelHumanoID\\LaravelHumanoIDServiceProvider"
             ]
         }

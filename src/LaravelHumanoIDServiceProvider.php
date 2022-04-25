@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace MallardDuck\LaravelHumanoID;
 
-use Composer\InstalledVersions;
 use Illuminate\Config\Repository;
 use Illuminate\Container\Container;
-use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use MallardDuck\LaravelHumanoID\Facades\HumanoID as HumanoIDFacade;
 use MallardDuck\LaravelHumanoID\Facades\HumanoIDManager as HumanoIDManagerFacade;
 use RobThree\HumanoID\HumanoID;
 
-class LaravelHumanoIDServiceProvider extends ServiceProvider implements DeferrableProvider
+class LaravelHumanoIDServiceProvider extends ServiceProvider
 {
     public static string $packageName = 'laravel-humanoid';
 
@@ -55,29 +53,5 @@ class LaravelHumanoIDServiceProvider extends ServiceProvider implements Deferrab
         });
         $this->app->alias(HumanoIDManagerFacade::class, static::$packageName);
         $this->app->alias(HumanoIDManagerFacade::class, HumanoIDManager::class);
-
-        $this->app->singleton(HumanoIDFacade::class, function (Application $app) {
-            /**
-             * @var HumanoIDManager $humanoIdManager
-             */
-            $humanoIdManager = $app->get(HumanoIDManagerFacade::class);
-
-            return $humanoIdManager->getDefaultGenerator();
-        });
-        $this->app->alias(HumanoIDFacade::class, 'humanoid');
-        $this->app->alias(HumanoIDFacade::class, HumanoID::class);
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return [
-            HumanoID::class,
-            HumanoIDManager::class,
-        ];
     }
 }
