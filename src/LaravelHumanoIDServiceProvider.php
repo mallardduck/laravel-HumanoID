@@ -47,7 +47,8 @@ class LaravelHumanoIDServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/humanoid.php', 'humanoid'
+            __DIR__.'/../config/humanoid.php',
+            'humanoid'
         );
 
         $this->app->singleton(HumanoIDManagerFacade::class, function (Application $app) {

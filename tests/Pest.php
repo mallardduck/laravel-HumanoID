@@ -33,5 +33,6 @@ expect()->extend('callStatic', function (string $methodName) {
         ->reflector()
         ->reflectClass($this->value);
     $method = $classInfo->getMethod($methodName);
-    return $this->and($method->invoke(new $this->value));
+
+    return $this->and($method->invoke(new $this->value()));
 });
