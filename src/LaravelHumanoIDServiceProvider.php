@@ -21,14 +21,24 @@ class LaravelHumanoIDServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $baseConfigPath = implode(DIRECTORY_SEPARATOR, [
+            __DIR__,
+            '..',
+            'config',
+            'humanoid.php'
+        ]);
         $this->publishes([
-            __DIR__.'/../config/humanoid.php' => config_path('humanoid.php'),
+            $baseConfigPath => config_path('humanoid.php'),
         ], ['humanoid-all', 'config', 'laravel-humanoid-config']);
 
-        $humanoidPath = HumanoIDManager::getHumanoIDVendorPath();
+        $humanoidPath = implode(DIRECTORY_SEPARATOR, [
+            HumanoIDManager::getHumanoIDVendorPath(),
+            'data',
+            ''
+        ]);
         $this->publishes([
-            $humanoidPath.'/data/space-words.json' => resource_path('humanoid/space-words.json'),
-            $humanoidPath.'/data/zoo-words.json' => resource_path('humanoid/zoo-words.json'),
+            $humanoidPath.'space-words.json' => resource_path('humanoid/space-words.json'),
+            $humanoidPath.'zoo-words.json' => resource_path('humanoid/zoo-words.json'),
         ], ['humanoid-all', 'humanoid']);
     }
 
