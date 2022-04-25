@@ -8,9 +8,7 @@ use Illuminate\Config\Repository;
 use Illuminate\Container\Container;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
-use MallardDuck\LaravelHumanoID\Facades\HumanoID as HumanoIDFacade;
 use MallardDuck\LaravelHumanoID\Facades\HumanoIDManager as HumanoIDManagerFacade;
-use RobThree\HumanoID\HumanoID;
 
 class LaravelHumanoIDServiceProvider extends ServiceProvider
 {

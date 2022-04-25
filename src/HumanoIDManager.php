@@ -100,9 +100,10 @@ class HumanoIDManager
     public static function getHumanoIDVendorPath(): string
     {
         static $vendorPath;
-        if (!isset($vendorPath)) {
+        if (! isset($vendorPath)) {
             $vendorPath = realpath(InstalledVersions::getInstallPath('robthree/humanoid'));
         }
+
         return $vendorPath;
     }
 }
