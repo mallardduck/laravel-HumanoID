@@ -34,6 +34,7 @@
         "phpstan/phpstan-deprecation-rules": "^1.0",
         "phpstan/phpstan-phpunit": "^1.0",
         "phpunit/phpunit": "^9.5",
+        "roave/better-reflection": "^5.4",
         "spatie/laravel-ray": "^1.26"
     },
     "autoload": {
@@ -66,7 +67,8 @@
                 "MallardDuck\\LaravelHumanoID\\LaravelHumanoIDServiceProvider"
             ],
             "aliases": {
-                "LaravelHumanoID": "MallardDuck\\LaravelHumanoID\\Facades\\LaravelHumanoID"
+                "HumanoID": "MallardDuck\\LaravelHumanoID\\Facades\\HumanoID",
+                "HumanoIDManager": "MallardDuck\\LaravelHumanoID\\Facades\\HumanoIDManager"
             }
         }
     },

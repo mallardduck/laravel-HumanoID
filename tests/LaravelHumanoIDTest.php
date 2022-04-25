@@ -1,15 +1,15 @@
 <?php
 
 use MallardDuck\LaravelHumanoID\Facades\HumanoID;
-use MallardDuck\LaravelHumanoID\Facades\LaravelHumanoID;
-use MallardDuck\LaravelHumanoID\HumanoIDManager as HumanoIDManager;
+use MallardDuck\LaravelHumanoID\Facades\HumanoIDManager;
+use MallardDuck\LaravelHumanoID\HumanoIDManager as ActualHumanoIDManager;
 use RobThree\HumanoID\HumanoID as HumanoIDGenerator;
 
 it('can get HumanoID manager class instance from App', function () {
-    $manager = $this->app->make(LaravelHumanoID::class);
+    $manager = $this->app->make(HumanoIDManager::class);
     expect($manager)
-        ->toBeInstanceOf(HumanoIDManager::class)
-        ->toBe($this->app->make(LaravelHumanoID::class));
+        ->toBeInstanceOf(ActualHumanoIDManager::class)
+        ->toBe($this->app->make(HumanoIDManager::class));
 });
 
 it('can get default HumanoID instance from App', function () {

@@ -84,3 +84,14 @@ it('can provide the default (yaml) generator', function () {
     expect($defaultGenerator->parse('Orange_Whitedwarf_Gonggong_Pinwheel'))
         ->toBe(420);
 });
+
+it('can provide the default (default app) generator', function () {
+    $integrationInstance = new HumanoIDManager(getTestConfigRepo(defaultGeneratorConfig: \App\HumanoID\DefaultAppConfig::class));
+    $defaultGenerator = $integrationInstance->getDefaultGenerator();
+    expect($defaultGenerator)
+        ->toBeInstanceOf(HumanoID::class);
+    expect($defaultGenerator->create(42))
+        ->toBe('Haumea-Pinwheel');
+    expect($defaultGenerator->parse('Hypergiant-Quaoar-Pinwheel'))
+        ->toBe(420);
+});

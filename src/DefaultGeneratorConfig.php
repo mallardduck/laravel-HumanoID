@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MallardDuck\LaravelHumanoID;
 
 use RobThree\HumanoID\WordFormatOption;

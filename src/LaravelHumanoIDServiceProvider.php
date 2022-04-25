@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MallardDuck\LaravelHumanoID;
 
 use Composer\InstalledVersions;
@@ -7,7 +9,7 @@ use Illuminate\Container\Container;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use MallardDuck\LaravelHumanoID\Facades\HumanoID as HumanoIDFacade;
-use MallardDuck\LaravelHumanoID\Facades\LaravelHumanoID as LaravelHumanoIDFacade;
+use MallardDuck\LaravelHumanoID\Facades\HumanoIDManager as HumanoIDManagerFacade;
 
 class LaravelHumanoIDServiceProvider extends ServiceProvider
 {
@@ -48,7 +50,7 @@ class LaravelHumanoIDServiceProvider extends ServiceProvider
             __DIR__.'/../config/humanoid.php', 'humanoid'
         );
 
-        $this->app->singleton(LaravelHumanoIDFacade::class, function (Application $app) {
+        $this->app->singleton(HumanoIDManagerFacade::class, function (Application $app) {
             return new HumanoIDManager(
                 fn () => Container::getInstance()->make('config'),
             );
@@ -58,7 +60,7 @@ class LaravelHumanoIDServiceProvider extends ServiceProvider
             /**
              * @var HumanoIDManager $humanoIdManager
              */
-            $humanoIdManager = $app->get(LaravelHumanoIDFacade::class);
+            $humanoIdManager = $app->get(HumanoIDManagerFacade::class);
 
             return $humanoIdManager->getDefaultGenerator();
         });

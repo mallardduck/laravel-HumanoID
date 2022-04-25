@@ -3,6 +3,7 @@
 use Illuminate\Config\Repository as Config;
 use MallardDuck\LaravelHumanoID\Tests\DefaultTestConfig;
 use MallardDuck\LaravelHumanoID\Tests\TestCase;
+use Roave\BetterReflection\BetterReflection;
 
 uses(TestCase::class)->in(__DIR__);
 
@@ -25,3 +26,12 @@ function getTestConfigRepo(
         ]);
     };
 }
+
+
+expect()->extend('callStatic', function (string $methodName) {
+    $classInfo = (new BetterReflection())
+        ->reflector()
+        ->reflectClass($this->value);
+    $method = $classInfo->getMethod($methodName);
+    return $this->and($method->invoke(new $this->value));
+});

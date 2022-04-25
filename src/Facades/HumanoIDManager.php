@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MallardDuck\LaravelHumanoID\Facades;
 
 use Illuminate\Support\Facades\Facade;
@@ -9,7 +11,7 @@ use Illuminate\Support\Facades\Facade;
  *
  * @see \MallardDuck\LaravelHumanoID\HumanoIDManager
  */
-class LaravelHumanoID extends Facade
+class HumanoIDManager extends Facade
 {
     protected static function getFacadeAccessor()
     {
