@@ -10,6 +10,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use MallardDuck\LaravelHumanoID\Facades\HumanoID as HumanoIDFacade;
 use MallardDuck\LaravelHumanoID\Facades\HumanoIDManager as HumanoIDManagerFacade;
+use RobThree\HumanoID\HumanoID;
 
 class LaravelHumanoIDServiceProvider extends ServiceProvider
 {
@@ -24,7 +25,7 @@ class LaravelHumanoIDServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../config/humanoid.php' => config_path('humanoid.php'),
-        ], ['humanoid-all', 'config']);
+        ], ['humanoid-all', 'config', 'laravel-humanoid-config']);
 
         $humanoidPath = realpath(InstalledVersions::getInstallPath('robthree/humanoid'));
         $this->publishes([
@@ -56,6 +57,8 @@ class LaravelHumanoIDServiceProvider extends ServiceProvider
                 fn () => Container::getInstance()->make('config'),
             );
         });
+        $this->app->alias(HumanoIDManagerFacade::class, static::$packageName);
+        $this->app->alias(HumanoIDManagerFacade::class, HumanoIDManager::class);
 
         $this->app->singleton(HumanoIDFacade::class, function (Application $app) {
             /**
@@ -65,5 +68,7 @@ class LaravelHumanoIDServiceProvider extends ServiceProvider
 
             return $humanoIdManager->getDefaultGenerator();
         });
+        $this->app->alias(HumanoIDFacade::class, 'humanoid');
+        $this->app->alias(HumanoIDFacade::class, HumanoID::class);
     }
 }
