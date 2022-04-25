@@ -37,8 +37,8 @@ class LaravelHumanoIDServiceProvider extends ServiceProvider
             '',
         ]);
         $this->publishes([
-            $humanoidPath.'space-words.json' => resource_path('humanoid/space-words.json'),
-            $humanoidPath.'zoo-words.json' => resource_path('humanoid/zoo-words.json'),
+            $humanoidPath.'space-words.json' => resource_path('humanoid' . DIRECTORY_SEPARATOR . 'space-words.json'),
+            $humanoidPath.'zoo-words.json' => resource_path('humanoid' . DIRECTORY_SEPARATOR . 'zoo-words.json'),
         ], ['humanoid-all', 'humanoid']);
     }
 

@@ -27,5 +27,5 @@ it('can get default HumanoID instance from App', function () {
 it('can get HumanoID vendor path', function () {
     expect(ActualHumanoIDManager::getHumanoIDVendorPath())
         ->toBeString()
-        ->toEndWith('vendor/robthree/humanoid');
+        ->toEndWith(agnosticPath('vendor/robthree/humanoid'));
 });
