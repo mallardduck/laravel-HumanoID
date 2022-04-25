@@ -1,6 +1,7 @@
 <?php
 // config for MallardDuck/HumanoIDManager
 return [
-    'defaultGeneratorConfig' => (class_exists('\App\HumanoID\MyAppConfig')) ? \App\HumanoID\MyAppConfig::class : \MallardDuck\LaravelHumanoID\DefaultGeneratorConfig::class,
+    'namespace' => '\App',
+    'defaultGeneratorConfig' => 'MyAppConfig', // Can either be FQCN, or short name which will be resolved as ${namespace}\HumanoID\${defaultGeneratorConfig}
     'wordSetsBasePath' => env('APP_HUMANOID_BASE', resource_path('humanoid/')),
 ];

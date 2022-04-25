@@ -31,7 +31,19 @@ class HumanoIDManager
          */
         $config = $configResolver();
         $this->wordSetsBasePath = $config->get('wordSetsBasePath', resource_path('humanoid'));
-        $this->configClass = $config->get('defaultGeneratorConfig', DefaultGeneratorConfig::class);
+
+        $generatorConfig = DefaultGeneratorConfig::class;
+        if ($config->has('defaultGeneratorConfig')) {
+            $potentialConfig = $config->get('defaultGeneratorConfig');
+            $potentialConfig = class_exists($potentialConfig) ?
+                $potentialConfig :
+                $config->get('namespace', '\\App') .  '\\HumanoID\\' . trim($generatorConfig);
+            if (class_exists($potentialConfig)) {
+                $generatorConfig = $potentialConfig;
+            }
+        }
+
+        $this->configClass = $generatorConfig;
     }
 
     public function hasWordSetsFolder(): bool
