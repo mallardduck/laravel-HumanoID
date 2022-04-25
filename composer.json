@@ -1,13 +1,16 @@
 {
     "name": "mallardduck/laravel-humanoid",
     "description": "This is my package laravel-humanoid",
-    "keywords": [
-        "MallardDuck",
-        "laravel",
-        "laravel-humanoid"
-    ],
-    "homepage": "https://github.com/mallardduck/laravel-humanoid",
     "license": "MIT",
+    "keywords": [
+        "laravel",
+        "humanoid",
+        "human-id",
+        "zoo-ids",
+        "int-to-string-id",
+        "laravel-humanoid",
+        "laravel-package"
+    ],
     "authors": [
         {
             "name": "Dan Pock",
@@ -15,6 +18,7 @@
             "role": "Developer"
         }
     ],
+    "homepage": "https://github.com/mallardduck/laravel-humanoid",
     "require": {
         "php": "^8.0",
         "ext-json": "*",
@@ -36,6 +40,8 @@
         "phpunit/phpunit": "^9.5",
         "roave/better-reflection": "^5.4"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "MallardDuck\\LaravelHumanoID\\": "src",
@@ -48,31 +54,29 @@
             "MallardDuck\\LaravelHumanoID\\Tests\\": "tests"
         }
     },
-    "scripts": {
-        "analyse": "vendor/bin/phpstan analyse",
-        "test": "vendor/bin/pest",
-        "test-coverage": "vendor/bin/pest --coverage",
-        "mutate": "./vendor/bin/infection --test-framework=pest --show-mutations\n"
-    },
     "config": {
-        "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "phpstan/extension-installer": true,
             "infection/extension-installer": true
-        }
+        },
+        "sort-packages": true
     },
     "extra": {
         "laravel": {
-            "providers": [
-                "MallardDuck\\LaravelHumanoID\\LaravelHumanoIDServiceProvider"
-            ],
             "aliases": {
                 "HumanoID": "MallardDuck\\LaravelHumanoID\\Facades\\HumanoID",
                 "HumanoIDManager": "MallardDuck\\LaravelHumanoID\\Facades\\HumanoIDManager"
-            }
+            },
+            "providers": [
+                "MallardDuck\\LaravelHumanoID\\LaravelHumanoIDServiceProvider"
+            ]
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "scripts": {
+        "analyse": "vendor/bin/phpstan analyse",
+        "mutate": "./vendor/bin/infection --test-framework=pest --show-mutations\n",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage"
+    }
 }
