@@ -4,7 +4,6 @@ namespace MallardDuck\LaravelHumanoID\Console;
 
 use Illuminate\Config\Repository;
 use Illuminate\Console\Command;
-use Illuminate\Foundation\Application;
 use MallardDuck\LaravelHumanoID\DefaultGeneratorConfig;
 use MallardDuck\LaravelHumanoID\HumanoIDManager;
 
@@ -46,8 +45,9 @@ class SetupHumanoid extends Command
             if ($this->isAlreadyPartialSetup()) {
                 $this->info("HumanoID setup has detected some prior configs, however it doesn't appear fully configured.");
                 $this->warn("Proceeding here will overwrite existing configs and may change HumanoID results");
-                if (!$this->confirm("Continue?")) {
+                if (! $this->confirm("Continue?")) {
                     $this->warn("Seems SUS, bailing..");
+
                     return self::FAILURE;
                 }
             } else {
@@ -82,7 +82,8 @@ class SetupHumanoid extends Command
      *
      * @return bool
      */
-    private function isAlreadyFullySetup(): bool{
+    private function isAlreadyFullySetup(): bool
+    {
         $configuredGeneratorName = HumanoIDManager::resolveDefaultGeneratorClassName(new Repository(config('humanoid')));
         if (
             is_dir(resource_path('humanoid')) // HumanoID resource DIR exists
@@ -96,7 +97,8 @@ class SetupHumanoid extends Command
         return false;
     }
 
-    private function isAlreadyPartialSetup(): bool{
+    private function isAlreadyPartialSetup(): bool
+    {
         $configuredGeneratorName = HumanoIDManager::resolveDefaultGeneratorClassName(new Repository(config('humanoid')));
         if (
             is_dir(resource_path('humanoid')) // HumanoID resource DIR exists
