@@ -25,7 +25,7 @@ function getTestConfigRepo(
     };
 }
 
-public function agnosticPath(string $path): string
+function agnosticPath(string $path): string
 {
     if (DIRECTORY_SEPARATOR === '/') {
         return $path;
