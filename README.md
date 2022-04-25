@@ -10,7 +10,7 @@ Once you've configured your site/apps [HumanoID](https://github.com/RobThree/Hum
 
 > Generates a HumanoID via your preconfigured for (int) 42
 ```php
-HumanoID::create(42); // Using a facade to access the singleton.
+HumanoID::create(42); // Using a facade (alias) to access the singleton.
 app(\RobThree\HumanoID\HumanoID::class)->create(42); // Or, get it via the app container.
 app(\MallardDuck\LaravelHumanoID\Facades\HumanoID::class)->create(42); // Or, get it via the app container.
 ```
