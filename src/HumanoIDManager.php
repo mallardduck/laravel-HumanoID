@@ -29,7 +29,7 @@ class HumanoIDManager
          * @var Config $config
          */
         $config = $configResolver();
-        $this->wordSetsBasePath = rtrim($config->get('humanoid.wordSetsBasePath', resource_path('humanoid/')));
+        $this->wordSetsBasePath = $config->get('humanoid.wordSetsBasePath', resource_path('humanoid'));
         $this->configClass = $config->get('humanoid.defaultGeneratorConfig', DefaultGeneratorConfig::class);
     }
 
@@ -42,9 +42,11 @@ class HumanoIDManager
     {
         $files = collect(File::files($this->wordSetsBasePath))
             ->filter(static function (SplFileInfo $fileInfo) {
-                return str_ends_with($fileInfo->getFilename(), '.yml') ||
-                    str_ends_with($fileInfo->getFilename(), '.yaml') ||
-                    str_ends_with($fileInfo->getFilename(), '.json');
+                return in_array(pathinfo($fileInfo->getFilename(), PATHINFO_EXTENSION), [
+                    'yaml',
+                    'yml',
+                    'json'
+                ]);
             })->values();
 
         return $files->count() >= 1;
