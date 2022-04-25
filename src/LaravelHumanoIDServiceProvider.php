@@ -32,12 +32,6 @@ class LaravelHumanoIDServiceProvider extends ServiceProvider
             $humanoidPath.'/data/space-words.json' => resource_path('humanoid/space-words.json'),
             $humanoidPath.'/data/zoo-words.json' => resource_path('humanoid/zoo-words.json'),
         ], ['humanoid-all', 'humanoid']);
-
-        if ($this->app->runningInConsole()) {
-            // $this->commands([
-            //     LaravelHumanoIDCommand::class,
-            // ]);
-        }
     }
 
     /**
