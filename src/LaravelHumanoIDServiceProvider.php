@@ -6,8 +6,8 @@ namespace MallardDuck\LaravelHumanoID;
 
 use Illuminate\Config\Repository;
 use Illuminate\Container\Container;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
+use MallardDuck\LaravelHumanoID\Console\SetupHumanoid;
 use MallardDuck\LaravelHumanoID\Facades\HumanoIDManager as HumanoIDManagerFacade;
 
 class LaravelHumanoIDServiceProvider extends ServiceProvider
@@ -30,6 +30,13 @@ class LaravelHumanoIDServiceProvider extends ServiceProvider
         $this->publishes([
             $baseConfigPath => config_path('humanoid.php'),
         ], ['humanoid-all', 'config', 'laravel-humanoid-config']);
+
+        // Register the command if we are using the application via the CLI
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                SetupHumanoid::class,
+            ]);
+        }
 
         $humanoidPath = implode(DIRECTORY_SEPARATOR, [
             HumanoIDManager::getHumanoIDVendorPath(),
