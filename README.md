@@ -1,12 +1,12 @@
-# Use HumanoID in Laravel with Ease!
+# Use [HumanoID](https://github.com/RobThree/HumanoID) in Laravel with Ease!
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mallardduck/laravel-humanoid.svg?style=flat-square)](https://packagist.org/packages/mallardduck/laravel-humanoid)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/mallardduck/laravel-humanoid/run-tests?label=tests)](https://github.com/mallardduck/laravel-humanoid/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/mallardduck/laravel-humanoid/Check%20&%20fix%20styling?label=code%20style)](https://github.com/mallardduck/laravel-humanoid/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/mallardduck/laravel-humanoid.svg?style=flat-square)](https://packagist.org/packages/mallardduck/laravel-humanoid)
 
-This package allows you to configure a HumanoID generator once and use it anywhere in your Laravel application.
-Once you've configured your site/apps HumanoID generator it's as easy as:
+This package allows you to configure a [HumanoID](https://github.com/RobThree/HumanoID) generator once and use it anywhere in your Laravel application.
+Once you've configured your site/apps [HumanoID](https://github.com/RobThree/HumanoID) generator it's as easy as:
 
 > Generates a HumanoID via your preconfigured for (int) 42
 ```php
