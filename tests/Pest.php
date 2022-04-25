@@ -19,10 +19,8 @@ function getTestConfigRepo(
 ): Closure {
     return function () use ($basePath, $defaultGeneratorConfig) {
         return new Config([
-            'humanoid' => [
-                'wordSetsBasePath' => $basePath,
-                'defaultGeneratorConfig' => $defaultGeneratorConfig,
-            ],
+            'wordSetsBasePath' => $basePath,
+            'defaultGeneratorConfig' => $defaultGeneratorConfig,
         ]);
     };
 }
