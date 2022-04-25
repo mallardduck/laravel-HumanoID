@@ -11,10 +11,10 @@ use RobThree\HumanoID\HumanoID;
 /**
  * Get the HumanoID integration manager class.
  *
- * @method static hasWordSetsFolder(): bool
- * @method static hasWordSets(): bool
- * @method static getDefaultGeneratorConfig(): HumanoIDConfig
- * @method static getDefaultGenerator(): HumanoID
+ * @method static bool              hasWordSetsFolder()
+ * @method static bool              hasWordSets()
+ * @method static HumanoIDConfig    getDefaultGeneratorConfig()
+ * @method static HumanoID          getDefaultGenerator()
  *
  * @see \MallardDuck\LaravelHumanoID\HumanoIDManager
  */

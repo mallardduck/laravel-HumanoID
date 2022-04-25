@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Facade;
 /**
  * Gets the default instance for the Laravel Application.
  *
- * @method static create(int $id): string
- * @method static parse(string $text): int
+ * @method static string    create(int $id)
+ * @method static int       parse(string $text)
  *
  * @see \RobThree\HumanoID\HumanoID
  */
