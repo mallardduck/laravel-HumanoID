@@ -25,7 +25,7 @@ class LaravelHumanoIDServiceProvider extends ServiceProvider
             __DIR__,
             '..',
             'config',
-            'humanoid.php'
+            'humanoid.php',
         ]);
         $this->publishes([
             $baseConfigPath => config_path('humanoid.php'),
@@ -34,7 +34,7 @@ class LaravelHumanoIDServiceProvider extends ServiceProvider
         $humanoidPath = implode(DIRECTORY_SEPARATOR, [
             HumanoIDManager::getHumanoIDVendorPath(),
             'data',
-            ''
+            '',
         ]);
         $this->publishes([
             $humanoidPath.'space-words.json' => resource_path('humanoid/space-words.json'),
