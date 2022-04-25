@@ -34,13 +34,13 @@ it('can verify LaravelHumanoIDServiceProvider booted groups', function () {
         ->toHaveCount(2);
 
     $configs = ServiceProvider::$publishGroups['laravel-humanoid-config'];
-    expect(array_keys($configs)[0])->toEndWith('/../config/humanoid.php');
-    expect(array_values($configs)[0])->toEndWith('/config/humanoid.php');
+    expect(array_keys($configs)[0])->toEndWith(agnosticPath('/../config/humanoid.php'));
+    expect(array_values($configs)[0])->toEndWith(agnosticPath('/config/humanoid.php'));
 
     $configs = ServiceProvider::$publishGroups['humanoid'];
-    expect(array_keys($configs)[0])->toEndWith('/data/space-words.json');
-    expect(array_values($configs)[0])->toEndWith('/humanoid/space-words.json');
+    expect(array_keys($configs)[0])->toEndWith(agnosticPath('/data/space-words.json'));
+    expect(array_values($configs)[0])->toEndWith(agnosticPath('/humanoid/space-words.json'));
 
-    expect(array_keys($configs)[1])->toEndWith('/data/zoo-words.json');
-    expect(array_values($configs)[1])->toEndWith('/humanoid/zoo-words.json');
+    expect(array_keys($configs)[1])->toEndWith(agnosticPath('/data/zoo-words.json'));
+    expect(array_values($configs)[1])->toEndWith(agnosticPath('/humanoid/zoo-words.json'));
 });

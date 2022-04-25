@@ -25,6 +25,14 @@ function getTestConfigRepo(
     };
 }
 
+public function agnosticPath(string $path): string
+{
+    if (DIRECTORY_SEPARATOR === '/') {
+        return $path;
+    }
+
+    return str_replace('/', DIRECTORY_SEPARATOR, $path);
+}
 
 expect()->extend('callStatic', function (string $methodName) {
     $classInfo = (new BetterReflection())
