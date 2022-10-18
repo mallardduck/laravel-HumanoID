@@ -37,14 +37,14 @@ class SetupHumanoid extends Command
         if ($defaultSetup) {
             if ($this->isAlreadyFullySetup()) {
                 $this->warn("HumanoID setup has detected an existing configuration. Bailing out to prevent breaking things.");
-                $this->info("After you've setup HumanoID the first time you should manage the files manually.");
+                $this->info("After you've setup HumanoID the first time you should manage the files yourself.");
 
                 return self::FAILURE;
             }
 
             if ($this->isAlreadyPartialSetup()) {
                 $this->info("HumanoID setup has detected some prior configs, however it doesn't appear fully configured.");
-                $this->warn("Proceeding here will overwrite existing configs and may change HumanoID results");
+                $this->warn("Proceeding here will overwrite existing configs and may change HumanoID behaviour and results.");
                 if (! $this->confirm("Continue?")) {
                     $this->warn("Seems SUS, bailing..");
 
@@ -73,7 +73,7 @@ class SetupHumanoid extends Command
     }
 
     /**
-     * For an App's integratoin to be considered "fully configured" it must
+     * For an App's integration to be considered "fully configured" it must
      * conform to a few simple best-practices to prevent breakages.
      * These are:
      * - published the word data or provided their own to use,

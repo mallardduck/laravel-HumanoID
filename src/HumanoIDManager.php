@@ -49,14 +49,11 @@ class HumanoIDManager
             $potentialConfig = class_exists($potentialConfig) ?
                 $potentialConfig :
                 $appConfig->get('namespace', '\\App') .  '\\HumanoID\\' . trim($generatorConfig);
-            if (class_exists($potentialConfig)) {
-                $generatorConfig = $potentialConfig;
-            }
         } else {
             $potentialConfig = $appConfig->get('namespace', '\\App') .  '\\HumanoID\\MyAppConfig';
-            if (class_exists($potentialConfig)) {
-                $generatorConfig = $potentialConfig;
-            }
+        }
+        if (class_exists($potentialConfig)) {
+            $generatorConfig = $potentialConfig;
         }
 
         return $generatorConfig;
