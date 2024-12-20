@@ -23,6 +23,7 @@
         "php": "^8.0",
         "ext-json": "*",
         "illuminate/contracts": "^10.0 || ^11.0",
+        "roave/better-reflection": "^6.49",
         "robthree/humanoid": "^1.0",
         "symfony/var-dumper": "^6.0 || ^7.0",
         "symfony/yaml": "^7.0"
