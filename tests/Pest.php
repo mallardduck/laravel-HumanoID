@@ -35,7 +35,7 @@ function agnosticPath(string $path): string
     return str_replace('/', DIRECTORY_SEPARATOR, $path);
 }
 
-function callStaticMethod(string $className, string $methodName,...$args): Expectation
+function callStaticMethod(string $className, string $methodName, ...$args): Expectation
 {
     $expectation = expect($className)
                     ->toBeClass();
@@ -49,6 +49,7 @@ function callStaticMethod(string $className, string $methodName,...$args): Expec
     $expectation = $expectation
         ->and($method->isStatic())
         ->toBeTrue(sprintf("Verify that `%s` is static", $methodName));
+
     return $expectation
         ->and($method->invoke(null, ...$args))
         ->toBeString();
