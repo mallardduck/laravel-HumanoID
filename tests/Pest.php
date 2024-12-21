@@ -3,6 +3,7 @@
 use Illuminate\Config\Repository as Config;
 use MallardDuck\LaravelHumanoID\Tests\DefaultTestConfig;
 use MallardDuck\LaravelHumanoID\Tests\TestCase;
+use Pest\Expectation;
 use Roave\BetterReflection\BetterReflection;
 
 uses(TestCase::class)->in(__DIR__);
@@ -34,11 +35,21 @@ function agnosticPath(string $path): string
     return str_replace('/', DIRECTORY_SEPARATOR, $path);
 }
 
-expect()->extend('callStatic', function (string $methodName) {
+function callStaticMethod(string $className, string $methodName,...$args): Expectation
+{
+    $expectation = expect($className)
+                    ->toBeClass();
     $classInfo = (new BetterReflection())
         ->reflector()
-        ->reflectClass($this->value);
+        ->reflectClass($className);
+    $expectation = $expectation
+        ->and($classInfo->hasMethod($methodName))
+        ->toBeTrue(sprintf("Verify that `%s` has method `%s`", $className, $methodName));
     $method = $classInfo->getMethod($methodName);
-
-    return $this->and($method->invoke(new $this->value()));
-});
+    $expectation = $expectation
+        ->and($method->isStatic())
+        ->toBeTrue(sprintf("Verify that `%s` is static", $methodName));
+    return $expectation
+        ->and($method->invoke(null, ...$args))
+        ->toBeString();
+}
