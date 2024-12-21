@@ -22,23 +22,23 @@
     "require": {
         "php": "^8.0",
         "ext-json": "*",
-        "illuminate/contracts": "^9.0 || ^10.0",
+        "illuminate/contracts": "^10.0 || ^11.0",
+        "roave/better-reflection": "^6.49",
         "robthree/humanoid": "^1.0",
-        "symfony/var-dumper": "^6.0",
-        "symfony/yaml": "^6.0"
+        "symfony/var-dumper": "^6.0 || ^7.0",
+        "symfony/yaml": "^7.0"
     },
     "require-dev": {
-        "infection/infection": "^0.26.8",
-        "nunomaduro/collision": "^6.0",
-        "nunomaduro/larastan": "^2.0.1",
-        "orchestra/testbench": "^7.0 || ^8.0",
-        "pestphp/pest": "^1.21",
-        "pestphp/pest-plugin-laravel": "^1.1",
-        "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan-deprecation-rules": "^1.0",
-        "phpstan/phpstan-phpunit": "^1.0",
-        "phpunit/phpunit": "^9.5",
-        "roave/better-reflection": "^5.4"
+        "infection/infection": "^0.29",
+        "nunomaduro/collision": "^8.0",
+        "nunomaduro/larastan": "^v3.0",
+        "orchestra/testbench": "^9.0",
+        "pestphp/pest": "^2.0 || ^3.0",
+        "pestphp/pest-plugin-laravel": "^3.0",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan-deprecation-rules": "^2.0",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpunit/phpunit": "^9.5 || ^10.0 || ^11.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

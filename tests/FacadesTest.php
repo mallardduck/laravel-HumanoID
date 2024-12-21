@@ -6,7 +6,7 @@ use RobThree\HumanoID\HumanoID;
 
 it('can verify HumanoIDManager facade exists', function () {
     expect(class_exists(HumanoIDManagerFacade::class))->toBeTrue();
-    expect(HumanoIDManagerFacade::class)->callStatic('getFacadeAccessor')->toBeString()->toBe('laravel-humanoid');
+    callStaticMethod(HumanoIDManagerFacade::class, 'getFacadeAccessor')->toBe('laravel-humanoid');
 });
 
 it('can verify HumanoIDManager facade aliases exists', function () {
@@ -33,7 +33,7 @@ it('can use the HumanoIDManager facade', function () {
 
 it('can verify HumanoID facade exists', function () {
     expect(class_exists(HumanoIDFacade::class))->toBeTrue();
-    expect(HumanoIDFacade::class)->callStatic('getFacadeAccessor')->toBeString()->toBe('humanoid');
+    callStaticMethod(HumanoIDFacade::class, 'getFacadeAccessor')->toBe('humanoid');
 });
 
 it('can verify HumanoID facade aliases exists', function () {
